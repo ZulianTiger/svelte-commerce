@@ -6,3 +6,13 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Product {
+  id          Int     @id @unique @default(autoincrement())
+  stripe_id   String  @unique
+  name        String
+  description String?
+  price       Float
+  image       String
+  featured    Boolean @default(false)
+}

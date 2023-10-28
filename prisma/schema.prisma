@@ -8,11 +8,20 @@ datasource db {
 }
 
 model Product {
-  id          Int     @id @unique @default(autoincrement())
-  stripe_id   String  @unique
+  id          Int      @id @unique @default(autoincrement())
+  stripe_id   String   @unique
   name        String
   description String?
   price       Float
   image       String
-  featured    Boolean @default(false)
+  featured    Boolean  @default(false)
+  category    Category @relation(fields: [category_id], references: [id])
+  category_id Int
+}
+
+model Category {
+  id       Int       @id @unique @default(autoincrement())
+  name     String
+  slug     String    @unique
+  products Product[]
 }

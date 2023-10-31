@@ -1,3 +1,7 @@
+<script>
+	import CartButton from './CartButton.svelte';
+</script>
+
 <nav class="flex justify-between items-center py-6 text-neutral-400 font-bold">
 	<ul class="flex items-center space-x-8">
 		<li>
@@ -13,6 +17,8 @@
 		</li>
 	</ul>
 	<div>
-		<!-- Cart button component here -->
+		<a href="/cart">
+			<CartButton />
+		</a>
 	</div>
 </nav>

@@ -6,7 +6,7 @@
 	<ul class="flex items-center space-x-8">
 		<li>
 			<a href="/">
-				<img src="/logo.png" alt="Svelte Commerce Logo" />
+				<img src="/logo.png" alt="Svelte Commerce Logo" class="h-8" />
 			</a>
 		</li>
 		<li>

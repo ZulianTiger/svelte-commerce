@@ -2,6 +2,7 @@
 	import CartItem from '$lib/components/CartItem.svelte';
 	import { get } from 'svelte/store';
 	import { cartItems } from '$lib/stores/cart';
+	import { goto } from '$app/navigation';
 
 	let items = get(cartItems);
 	let totalPrice = 0;
@@ -10,6 +11,20 @@
 		return arr.reduce((acc, item) => {
 			return acc + item.price * item.quantity;
 		}, 0);
+	};
+
+	const handleCheckout = async () => {
+		const response = await fetch('/api/checkout', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			},
+			body: JSON.stringify({ items })
+		});
+
+		const data = await response.json();
+		goto(data.url, { replaceState: true });
 	};
 
 	cartItems.subscribe((newCartItems) => {
@@ -37,7 +52,10 @@
 	{#if items.length > 0}
 		<div class="flex flex-col items-end space-y-4">
 			<h2 class="text-xl font-bold">Total: $0 USD</h2>
-			<button class="bg-blue-500 rouned-full px-4 py-2 font-bold hover:bg-blue-600 duration-300">
+			<button
+				on:click={handleCheckout}
+				class="bg-blue-500 rouned-full px-4 py-2 font-bold hover:bg-blue-600 duration-300"
+			>
 				Proceed to checkout
 			</button>
 		</div>

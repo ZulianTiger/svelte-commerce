@@ -1,5 +1,8 @@
 <script>
+	import { addToCart } from '$lib/stores/cart';
 	export let data;
+
+	const handleAddToCart = () => addToCart(data.product);
 </script>
 
 <div
@@ -19,7 +22,10 @@
 		</div>
 		<hr />
 		<p class="text-neutral-400">{data.product.description}</p>
-		<button class="bg-blue-600 rounded-full px-6 py-4 hover:bg-blue-500 duration-300">
+		<button
+			class="bg-blue-600 rounded-full px-6 py-4 hover:bg-blue-500 duration-300"
+			on:click={handleAddToCart}
+		>
 			Add to cart
 		</button>
 	</div>

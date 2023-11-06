@@ -26,6 +26,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@prisma/client": "^5.4.1"
+		"@prisma/client": "^5.4.1",
+		"stripe": "^14.3.0"
 	}
 }
